@@ -1,15 +1,4 @@
 #!/usr/bin/env python
-"""
-python-googleapi
-python-feedparser
-python-requests
-python-bs4
-
-python3-googleapi
-python3-feedparser
-python3-requests
-python3-bs4
-"""
 
 from __future__ import print_function
 import httplib2
