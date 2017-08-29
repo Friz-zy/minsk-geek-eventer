@@ -3,14 +3,12 @@ Script that parse multiple sites and add events into google calendar
 
 Requirements:
 
-* python2
+* python libraries  
 ```
-sudo apt-get install python-googleapi python-feedparser python-requests python-bs4
+python2: sudo apt-get install python-googleapi python-feedparser python-requests python-bs4
 ```
-or  
-python3
 ```
-sudo apt-get install python3-googleapi python3-feedparser python3-requests python3-bs4
+python3: sudo apt-get install python3-googleapi python3-feedparser python3-requests python3-bs4
 ```
 
 * Goodle API Credentials  
