@@ -54,7 +54,7 @@ def main():
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
-    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    now = datetime.datetime.utcnow().date().isoformat() + 'T00:00:00.000000Z' # 'Z' indicates UTC time
     calendarId = 'primary'
 
     # Fetch all calendars and get id of CALENDAR
@@ -121,6 +121,16 @@ def main():
                 print("Can't add '{}' event".format(e['title']))
                 print(event)
                 raise
+
+    # TODO:
+    # https://eventspace.by/
+    # https://imaguru.by/?post_type=tribe_events
+    # http://balkiproject.com/education_ru
+    # http://cech.by//
+    # https://www.facebook.com/pg/john.galt.space.minsk/events/?ref=page_internal
+    # http://www.park.by/cat-38/
+    # https://citydog.by/afisha/
+    # https://everyng.com/place/Belarus/Minsk
 
 
 if __name__ == '__main__':
