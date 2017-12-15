@@ -27,6 +27,10 @@ CLIENT_CREDENTIALS_FILE = 'client_credentials.json'
 APPLICATION_NAME = 'Minsk Geek Eventer'
 CALENDAR = 'Minsk Geek Events'
 
+STOPWORDS: [
+  "Обучение английскому в онлайн-школе Skyeng",
+]
+
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -84,7 +88,14 @@ def main():
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
     for e in rss['entries']:
-        if e['title'] not in events_summary:
+        # stopwords
+        bullshit_bingo = False
+        for word in STOPWORDS:
+            if word in e['title']:
+                bullshit_bingo = "Bingo!"
+        if bullshit_bingo:
+            continue
+        elif e['title'] not in events_summary:
             try:
                 page = requests.get(e['link'])
                 desc = page.text[page.text.find("<div class='text'>")+18:page.text.find("</div>", page.text.find("<div class='text'>"))]
