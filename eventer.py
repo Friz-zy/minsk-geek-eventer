@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from __future__ import print_function
 import httplib2
@@ -27,8 +28,8 @@ CLIENT_CREDENTIALS_FILE = 'client_credentials.json'
 APPLICATION_NAME = 'Minsk Geek Eventer'
 CALENDAR = 'Minsk Geek Events'
 
-STOPWORDS: [
-  "Обучение английскому в онлайн-школе Skyeng",
+STOPWORDS = [
+  u"Обучение английскому в онлайн-школе Skyeng",
 ]
 
 
