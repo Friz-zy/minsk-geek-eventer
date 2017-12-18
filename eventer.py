@@ -187,11 +187,11 @@ def main():
                     print('Event created: {}'.format(calendar_event.get('htmlLink')))
 
                     events_summary.append(event['name'])
-                except Exception as e:
+                except Exception as er:
                     print("Can't add '{}' event".format(event['name'].encode('utf8')))
                     print(event)
-                    print(e.__doc__)
-                    print(e.message)
+                    print(er.__doc__)
+                    print(er.message)
 
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
@@ -226,22 +226,23 @@ def main():
                     'description': e['link'] + "\n" + desc,
                     'start': {
                         'dateTime': datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'UTC+3',
+                        'timeZone': 'Europe/Minsk',
                     },
                     'end': {
                         'dateTime': datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'UTC+3',
+                        'timeZone': 'Europe/Minsk',
                     }
                 }
                 event = service.events().insert(calendarId=calendarId, body=event).execute()
                 print('Event created: {}'.format(event.get('htmlLink')))
 
                 events_summary.append(e['title'])
-            except Exception as e:
+            except Exception as er:
+                raise
                 print("Can't add '{}' event".format(e['title']))
                 print(event)
-                print(e.__doc__)
-                print(e.message)
+                print(er.__doc__)
+                print(er.message)
 
 
     # TODO:
