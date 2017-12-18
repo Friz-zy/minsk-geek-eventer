@@ -174,7 +174,7 @@ def main():
                     calendar_event_data = {
                         'summary': event['name'],
                         'location': location,
-                        'description': link + "\n" + event['description'],
+                        'description': link + "\n\n" + event['description'],
                         'start': {
                             'dateTime': event['start_time'],
                         },
