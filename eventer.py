@@ -13,6 +13,7 @@ from oauth2client.file import Storage
 import datetime
 import feedparser
 import requests
+import json
 import re
 
 try:
@@ -27,6 +28,42 @@ CLIENT_SECRET_FILE = 'client_secret.json'
 CLIENT_CREDENTIALS_FILE = 'client_credentials.json'
 APPLICATION_NAME = 'Minsk Geek Eventer'
 CALENDAR = 'Minsk Geek Events'
+
+FACEBOOK= [
+  u"imaguruby",
+  u"eventspace.by",
+  u"loftbalki",
+  u"john.galt.space.minsk",
+  u"cech.by",
+  u"HTPBelarus",
+  u"cultcenterkorpus",
+  u"komn302",
+  u"Talaka.by",
+  u"hs.minsk",
+  u"falanster.by",
+  u"MinskPythonMeetup",
+  u"minskruby",
+  u"MinskJS",
+  u"BelarusJavaUserGroup",
+  u"UXBelarus",
+  u"DataTalks",
+  u"391132934426041", #devopsby
+  u"Scala-Enthusiasts-Belarus-137171759692484",
+  u"modxby",
+  u"AzureBelarus",
+  u"opendataby",
+  u"comaqa.by",
+  u"gdgminsk",
+  u"webnotbombs",
+  u"dotnet.minsk",
+  u"funcby",
+  u"TheRollingScopes",
+  u"BelarusKUG",
+  u"javaprofessionalsby",
+  u"MinskCSS",
+  u"minsk.user.group",
+  u"inproductshoes",
+]
 
 STOPWORDS = [
   u"Обучение английскому в онлайн-школе Skyeng",
@@ -86,6 +123,74 @@ def main():
             break
     events_summary = [e['summary'] for e in events]
 
+    # Facebook
+    try:
+        print('Getting Facebook oauth tocken')
+        facebook = json.load(open('facebook.json'))
+        oauth = requests.get('https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&' +
+                             'client_id={0}&client_secret={1}'.format(facebook['app_id'], facebook['app_secret']))
+        facebook.update(json.loads(oauth.text))
+    except:
+        print("Can't get facebook oauth token")
+        facebook= False
+    if facebook:
+        facebook_events = []
+        for page in FACEBOOK:
+            print('Getting events from https://facebook.com/{}'.format(page))
+            next = 'https://graph.facebook.com/v2.11/{0}/events?access_token={1}'.format(page, facebook['access_token'])
+            while next:
+                r = requests.get(next)
+                data = json.loads(r.text)
+                if 'data' in data:
+                    facebook_events.extend(data['data'])
+                if 'paging' in data and 'next' in data['paging']:
+                    next = data['paging']['next']
+                else:
+                    next = ''
+        # [u'description', u'start_time', u'place', u'end_time', u'id', u'name']
+        for event in facebook_events:
+            # stopwords
+            bullshit_bingo = False
+            for word in STOPWORDS:
+                if word in event['name']:
+                    bullshit_bingo = "Bingo!"
+                    break
+            if bullshit_bingo:
+                continue
+            elif (event['name'] not in events_summary and 'end_time' in event and
+                  datetime.datetime.strptime(event['end_time'][0:10], "%Y-%m-%d") > datetime.datetime.today()):
+                try:
+                    location = event['place']['name']
+                    if 'location' in event['place']:
+                        location = ", ".join((
+                            event['place']['name'],
+                            event['place']['location']['street'],
+                            event['place']['location']['city'],
+                            event['place']['location']['country']
+                            ))
+                    link = 'https://www.facebook.com/events/{}/'.format(event['id'])
+
+                    calendar_event_data = {
+                        'summary': event['name'],
+                        'location': location,
+                        'description': link + "\n" + event['description'],
+                        'start': {
+                            'dateTime': event['start_time'],
+                        },
+                        'end': {
+                            'dateTime': event['end_time'],
+                        }
+                    }
+                    calendar_event = service.events().insert(calendarId=calendarId, body=calendar_event_data).execute()
+                    print('Event created: {}'.format(calendar_event.get('htmlLink')))
+
+                    events_summary.append(event['name'])
+                except Exception as e:
+                    print("Can't add '{}' event".format(event['name'].encode('utf8')))
+                    print(event)
+                    print(e.__doc__)
+                    print(e.message)
+
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
     for e in rss['entries']:
@@ -94,6 +199,7 @@ def main():
         for word in STOPWORDS:
             if word in e['title']:
                 bullshit_bingo = "Bingo!"
+                break
         if bullshit_bingo:
             continue
         elif e['title'] not in events_summary:
@@ -118,28 +224,25 @@ def main():
                     'description': e['link'] + "\n" + desc,
                     'start': {
                         'dateTime': datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'UTC',
+                        'timeZone': 'UTC+3',
                     },
                     'end': {
                         'dateTime': datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'UTC',
+                        'timeZone': 'UTC+3',
                     }
                 }
                 event = service.events().insert(calendarId=calendarId, body=event).execute()
                 print('Event created: {}'.format(event.get('htmlLink')))
 
                 events_summary.append(e['title'])
-            except:
+            except Exception as e:
                 print("Can't add '{}' event".format(e['title']))
                 print(event)
-                raise
+                print(e.__doc__)
+                print(e.message)
+
 
     # TODO:
-    # https://eventspace.by/
-    # https://imaguru.by/?post_type=tribe_events
-    # http://balkiproject.com/education_ru
-    # http://cech.by//
-    # https://www.facebook.com/pg/john.galt.space.minsk/events/?ref=page_internal
     # http://www.park.by/cat-38/
     # https://citydog.by/afisha/
     # https://everyng.com/place/Belarus/Minsk
