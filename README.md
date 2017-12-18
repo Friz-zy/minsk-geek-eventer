@@ -1,5 +1,5 @@
 Script that parse multiple sites and add events into [Minsk Geek Events
-](https://calendar.google.com/calendar/embed?src=58deqgrcqbv4eup0l07s0pnid0%40group.calendar.google.com&ctz=Europe/Minsk)) google calendar
+](https://calendar.google.com/calendar/embed?src=58deqgrcqbv4eup0l07s0pnid0%40group.calendar.google.com&ctz=Europe/Minsk) google calendar
 
 Requirements:
 
