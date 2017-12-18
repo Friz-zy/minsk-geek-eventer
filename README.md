@@ -63,4 +63,5 @@ Current sources of events:
 - https://www.facebook.com/groups/MinskCSS
 - https://www.facebook.com/groups/minsk.user.group
 - https://www.facebook.com/inproductshoes
+- https://www.facebook.com/pg/kurilka.minsk
 - https://events.dev.by/rss

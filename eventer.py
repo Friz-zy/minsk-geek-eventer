@@ -63,6 +63,7 @@ FACEBOOK= [
   u"MinskCSS",
   u"minsk.user.group",
   u"inproductshoes",
+  u"kurilka.minsk",
 ]
 
 STOPWORDS = [
