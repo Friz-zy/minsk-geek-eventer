@@ -67,6 +67,7 @@ FACEBOOK= [
 
 STOPWORDS = [
   u"Обучение английскому в онлайн-школе Skyeng",
+  u"KinoKORPUS",
 ]
 
 
