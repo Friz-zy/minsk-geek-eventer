@@ -125,6 +125,9 @@ def main():
             break
     events_summary = [e['summary'] for e in events]
 
+    today = datetime.datetime.today()
+    today = today.replace(hour=0, minute=0, second=0, microsecond=0)
+
     # Facebook
     try:
         print('Getting Facebook oauth tocken')
@@ -160,7 +163,7 @@ def main():
             if bullshit_bingo:
                 continue
             elif (event['name'] not in events_summary and 'end_time' in event and
-                  datetime.datetime.strptime(event['end_time'][0:10], "%Y-%m-%d") > datetime.datetime.today()):
+                  datetime.datetime.strptime(event['end_time'][0:10], "%Y-%m-%d") >= today):
                 try:
                     location = event['place']['name']
                     if 'location' in event['place']:
