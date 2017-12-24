@@ -65,6 +65,8 @@ FACEBOOK= [
   u"inproductshoes",
   u"kurilka.minsk",
   u"delaisvoedelo",
+  u"ReveraLawFirm",
+  u"VilgertsBelarus",
 ]
 
 STOPWORDS = [

@@ -65,4 +65,6 @@ Current sources of events:
 - https://www.facebook.com/inproductshoes
 - https://www.facebook.com/kurilka.minsk
 - https://www.facebook.com/delaisvoedelo
+- https://www.facebook.com/ReveraLawFirm
+- https://www.facebook.com/VilgertsBelarus
 - https://events.dev.by/rss
