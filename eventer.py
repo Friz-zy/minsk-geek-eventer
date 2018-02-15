@@ -67,6 +67,7 @@ FACEBOOK= [
   u"delaisvoedelo",
   u"ReveraLawFirm",
   u"VilgertsBelarus",
+  u"34travel",
 ]
 
 STOPWORDS = [
@@ -202,6 +203,9 @@ def main():
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
     for e in rss['entries']:
+        # Disable this source for now
+        break
+
         # stopwords
         bullshit_bingo = False
         for word in STOPWORDS:

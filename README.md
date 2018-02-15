@@ -67,4 +67,12 @@ Current sources of events:
 - https://www.facebook.com/delaisvoedelo
 - https://www.facebook.com/ReveraLawFirm
 - https://www.facebook.com/VilgertsBelarus
+- https://www.facebook.com/34travel
+
+Currently disabled
 - https://events.dev.by/rss
+
+Possible sources:
+https://afisha.tut.by/places/concert/
+https://afisha.tut.by/concert/
+https://citydog.by/afisha/
