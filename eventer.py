@@ -68,6 +68,7 @@ FACEBOOK= [
   u"ReveraLawFirm",
   u"VilgertsBelarus",
   u"34travel",
+  u"probusiness.io",
 ]
 
 STOPWORDS = [
