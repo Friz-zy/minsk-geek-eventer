@@ -206,8 +206,10 @@ def main():
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
     for e in rss['entries']:
-        # Disable this source for now
-        break
+        # Enable it back but only while facebook disable api
+        # https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes
+        if facebook_events:
+            break
 
         # stopwords
         bullshit_bingo = False
@@ -239,11 +241,11 @@ def main():
                     'description': e['link'] + "\n" + desc,
                     'start': {
                         'dateTime': datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'Europe/Minsk',
+                        'timeZone': 'GMT',
                     },
                     'end': {
                         'dateTime': datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'Europe/Minsk',
+                        'timeZone': 'GMT',
                     }
                 }
                 event = service.events().insert(calendarId=calendarId, body=event).execute()
