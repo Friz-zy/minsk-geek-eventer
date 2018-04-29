@@ -69,6 +69,8 @@ Current sources of events:
 - https://www.facebook.com/VilgertsBelarus
 - https://www.facebook.com/34travel
 - https://www.facebook.com/probusiness.io
+- https://www.facebook.com/pg/cyberfund
+- https://www.facebook.com/blockchainmeetups
 
 Currently disabled
 - https://events.dev.by/rss

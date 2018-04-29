@@ -69,6 +69,8 @@ FACEBOOK= [
   u"VilgertsBelarus",
   u"34travel",
   u"probusiness.io",
+  u"cyberfund",
+  u"blockchainmeetups",
 ]
 
 STOPWORDS = [
