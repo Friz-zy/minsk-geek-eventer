@@ -11,10 +11,13 @@ from oauth2client import tools
 from oauth2client.file import Storage
 
 import datetime
+import dateparser
 import feedparser
 import requests
 import json
 import re
+
+from six.moves.html_parser import HTMLParser
 
 try:
     import argparse
@@ -78,6 +81,8 @@ STOPWORDS = [
   u"KinoKORPUS",
 ]
 
+HEADERS = {"Accept-Language": "en"}
+
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -107,6 +112,7 @@ def main():
     service = discovery.build('calendar', 'v3', http=http)
     now = datetime.datetime.utcnow().date().isoformat() + 'T00:00:00.000000Z' # 'Z' indicates UTC time
     calendarId = 'primary'
+    h = HTMLParser()
 
     # Fetch all calendars and get id of CALENDAR
     page_token = None
@@ -136,69 +142,75 @@ def main():
     today = today.replace(hour=0, minute=0, second=0, microsecond=0)
 
     # Facebook
-    try:
-        print('Getting Facebook oauth tocken')
-        facebook = json.load(open('facebook.json'))
-        oauth = requests.get('https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&' +
-                             'client_id={0}&client_secret={1}'.format(facebook['app_id'], facebook['app_secret']))
-        facebook.update(json.loads(oauth.text))
-    except:
-        print("Can't get facebook oauth token")
-        facebook= False
-    if facebook:
+    # Facebook closed their graph api so now we would parse it manually
+    if FACEBOOK:
         facebook_events = []
         for page in FACEBOOK:
-            print('Getting events from https://facebook.com/{}'.format(page))
-            next = 'https://graph.facebook.com/v2.11/{0}/events?access_token={1}'.format(page, facebook['access_token'])
-            while next:
-                r = requests.get(next)
-                data = json.loads(r.text)
-                if 'data' in data:
-                    facebook_events.extend(data['data'])
-                if 'paging' in data and 'next' in data['paging']:
-                    next = data['paging']['next']
-                else:
-                    next = ''
-        # [u'description', u'start_time', u'place', u'end_time', u'id', u'name']
-        for event in facebook_events:
-            # stopwords
-            bullshit_bingo = False
-            for word in STOPWORDS:
-                if word in event['name']:
-                    bullshit_bingo = "Bingo!"
-                    break
-            if bullshit_bingo:
-                continue
-            elif (event['name'] not in events_summary and 'end_time' in event and
-                  datetime.datetime.strptime(event['end_time'][0:10], "%Y-%m-%d") >= today):
+            link = 'https://m.facebook.com/{0}/events'.format(page)
+            print('Getting events from {}'.format(link))
+            page = requests.get(link, headers=HEADERS)
+            # get 5 next events
+            ids = re.findall('href="/events/([0-9]*)\?', page.text)
+
+            for id in ids:
                 try:
-                    location = event['place']['name']
-                    if 'location' in event['place']:
-                        location = ", ".join((
-                            event['place']['name'],
-                            event['place']['location']['street'],
-                            event['place']['location']['city'],
-                            event['place']['location']['country']
-                            ))
-                    link = 'https://www.facebook.com/events/{}/'.format(event['id'])
+                    event = {'id': id}
+                    link = 'https://m.facebook.com/events/{0}'.format(id)
+                    page = requests.get(link, headers=HEADERS)
+                    event['name'] = h.unescape(re.findall('<title>(.*)</title>', page.text)[0])
+                    event['date'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[0])
+                    event['place'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[2])
+                    event['address'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[3])
+                    event['description'] = ''
 
-                    calendar_event_data = {
-                        'summary': event['name'],
-                        'location': location,
-                        'description': link + "\n\n" + event['description'],
-                        'start': {
-                            'dateTime': event['start_time'],
-                        },
-                        'end': {
-                            'dateTime': event['end_time'],
+                    if "UTC" in event['date']:
+                        event['timeZone'] = event['date'].split()[-1]
+                        event['date'] = event['date'][:-len(event['timeZone'])]
+                    else:
+                        event['timeZone'] = 'UTC'
+
+                    if ' - ' in event['date']:
+                        start, end = event['date'].split('-')
+                        if ' at ' not in end:
+                            end = start.split()[:-2] + end.split()
+                            end = ' '.join(end)
+                        event['start_time'] = dateparser.parse(start).isoformat()
+                        event['end_time'] = dateparser.parse(end).isoformat()
+                    else:
+                        event['start_time'] = dateparser.parse(event['date']).isoformat()
+                        event['end_time'] = event['start_time']
+
+                    print(event)
+
+                    # stopwords
+                    bullshit_bingo = False
+                    for word in STOPWORDS:
+                        if word in event['name']:
+                            bullshit_bingo = "Bingo!"
+                            break
+                    if bullshit_bingo:
+                        continue
+                    elif event['name'] not in events_summary:
+                        calendar_event_data = {
+                            'summary': event['name'],
+                            'location': ", ".join((event['place'], event['address'])),
+                            'description': link + "\n\n" + event['description'],
+                            'start': {
+                                'dateTime': event['start_time'],
+                                'timeZone': event['timeZone'] + ':00',
+                            },
+                            'end': {
+                                'dateTime': event['end_time'],
+                                'timeZone': event['timeZone'] + ':00',
+                            }
                         }
-                    }
-                    calendar_event = service.events().insert(calendarId=calendarId, body=calendar_event_data).execute()
-                    print('Event created: {}'.format(calendar_event.get('htmlLink')))
+                        calendar_event = service.events().insert(calendarId=calendarId, body=calendar_event_data).execute()
+                        print('Event created: {}'.format(calendar_event.get('htmlLink')))
 
-                    events_summary.append(event['name'])
+                        events_summary.append(event['name'])
+                        facebook_events.append(event)
                 except Exception as er:
-                    print("Can't add '{}' event".format(event['name'].encode('utf8')))
+                    print("Can't add '{}' event".format(link))
                     print(event)
                     print(er.__doc__)
                     print(er.message)
@@ -206,7 +218,7 @@ def main():
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
     for e in rss['entries']:
-        # Enable it back but only while facebook disable api
+        # Enable it back but only while facebook disabled api
         # https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes
         if facebook_events:
             break

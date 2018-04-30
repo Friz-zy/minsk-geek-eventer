@@ -6,22 +6,18 @@ Requirements:
 * python libraries  
 python2:  
 ```
-sudo apt-get install python-googleapi python-feedparser python-requests python-bs4
+sudo apt-get install python-googleapi python-feedparser python-requests dateparser six
 ```
 python3:  
 ```
-sudo apt-get install python3-googleapi python3-feedparser python3-requests python3-bs4
+sudo apt-get install python3-googleapi python3-feedparser python3-requests dateparser six
 ```
 
 * Goodle API Credentials  
 [Turn on the Google Calendar API](https://developers.google.com/google-apps/calendar/quickstart/python)
 
-* Facebook API Credentials  
-For accessing Facebook API eventer use [facebook application credentials](https://developers.facebook.com/docs/facebook-login/access-tokens#apptokens).  
-You should [create your one](https://developers.facebook.com/apps) and store it in `facebook.json` near main script:
-```
-{"app_id": "123456789012345", "app_secret": "<long hash>"}
-```
+* Facebook API Credentials
+Facebook disabled graph api for applications so now this script just parse the pages directly
 
 * Goodle API Autorization  
 Run it first time manually
@@ -72,7 +68,7 @@ Current sources of events:
 - https://www.facebook.com/pg/cyberfund
 - https://www.facebook.com/blockchainmeetups
 
-Currently disabled
+Enabled only if facebook events is empty
 - https://events.dev.by/rss
 
 Possible sources:
