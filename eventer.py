@@ -74,6 +74,7 @@ FACEBOOK= [
   u"probusiness.io",
   u"cyberfund",
   u"blockchainmeetups",
+  u"iot.belarus.community",
 ]
 
 STOPWORDS = [

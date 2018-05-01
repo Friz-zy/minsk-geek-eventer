@@ -67,6 +67,7 @@ Current sources of events:
 - https://www.facebook.com/probusiness.io
 - https://www.facebook.com/pg/cyberfund
 - https://www.facebook.com/blockchainmeetups
+- https://www.facebook.com/groups/iot.belarus.community
 
 Enabled only if facebook events is empty
 - https://events.dev.by/rss
