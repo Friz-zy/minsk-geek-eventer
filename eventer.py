@@ -149,6 +149,7 @@ def main():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=800x5000")
+    chrome_options.add_argument('--no-sandbox') # fix for running from root
     chrome_options.add_argument("-lang=en")
 
     # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads
@@ -191,7 +192,8 @@ def main():
                     if "UTC" in event['date']:
                         event['timeZone'] = event['date'].split()[-1]
                         event['date'] = event['date'][:-len(event['timeZone'])]
-                        event['timeZone'] += ':00'
+                        if event['timeZone'] != 'UTC':
+                            event['timeZone'] += ':00'
                     else:
                         event['timeZone'] = 'UTC'
 
@@ -241,7 +243,7 @@ def main():
                     print("Can't add '{}' event".format(link))
                     print(event)
                     print(er.__doc__)
-                    print(er.message)
+                    # print(er.message)
 
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')

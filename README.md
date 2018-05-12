@@ -6,11 +6,13 @@ Requirements:
 * python libraries  
 python2:  
 ```
-sudo apt-get install python-googleapi python-feedparser python-requests dateparser six python-selenium chromium-chromedriver
+sudo apt-get install python-pip python-googleapi python-feedparser python-requests python-selenium chromium-chromedriver
+sudo pip install dateparser six
 ```
 python3:  
 ```
-sudo apt-get install python3-googleapi python3-feedparser python3-requests dateparser six python3-selenium chromium-chromedriver
+sudo apt-get install python3-pip python3-googleapi python3-feedparser python3-requests python3-selenium chromium-chromedriver
+sudo pip3 install dateparser six
 ```
 
 * Goodle API Credentials  
