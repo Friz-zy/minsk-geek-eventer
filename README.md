@@ -6,18 +6,18 @@ Requirements:
 * python libraries  
 python2:  
 ```
-sudo apt-get install python-googleapi python-feedparser python-requests dateparser six
+sudo apt-get install python-googleapi python-feedparser python-requests dateparser six python-selenium chromium-chromedriver
 ```
 python3:  
 ```
-sudo apt-get install python3-googleapi python3-feedparser python3-requests dateparser six
+sudo apt-get install python3-googleapi python3-feedparser python3-requests dateparser six python3-selenium chromium-chromedriver
 ```
 
 * Goodle API Credentials  
 [Turn on the Google Calendar API](https://developers.google.com/google-apps/calendar/quickstart/python)
 
 * Facebook API Credentials
-Facebook disabled graph api for applications so now this script just parse the pages directly
+Facebook disabled graph api for applications so now this script just parse the pages directly with chromium-chromedriver and selenium (curl is a very limited option)
 
 * Goodle API Autorization  
 Run it first time manually

@@ -19,6 +19,9 @@ import re
 
 from six.moves.html_parser import HTMLParser
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
 try:
     import argparse
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
@@ -142,6 +145,18 @@ def main():
     today = datetime.datetime.today()
     today = today.replace(hour=0, minute=0, second=0, microsecond=0)
 
+    # instantiate a chrome options object so you can set the size and headless preference
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=800x5000")
+    chrome_options.add_argument("-lang=en")
+
+    # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads
+    chrome_driver = "/usr/lib/chromium-browser/chromedriver"
+
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+
+
     # Facebook
     # Facebook closed their graph api so now we would parse it manually
     if FACEBOOK:
@@ -149,28 +164,42 @@ def main():
         for page in FACEBOOK:
             link = 'https://m.facebook.com/{0}/events'.format(page)
             print('Getting events from {}'.format(link))
-            page = requests.get(link, headers=HEADERS)
-            # get 5 next events
-            ids = re.findall('href="/events/([0-9]*)\?', page.text)
+            #page = requests.get(link, headers=HEADERS)
+            driver.get(link)
+            # get 14 next events
+            ids = re.findall('href="/events/([0-9]*)\?', driver.page_source)
 
             for id in ids:
                 try:
                     event = {'id': id}
                     link = 'https://m.facebook.com/events/{0}'.format(id)
-                    page = requests.get(link, headers=HEADERS)
-                    event['name'] = h.unescape(re.findall('<title>(.*)</title>', page.text)[0])
-                    event['date'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[0])
-                    event['place'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[2])
-                    event['address'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[3])
+                    #page = requests.get(link, headers=HEADERS)
+                    #event['name'] = h.unescape(re.findall('<title>(.*)</title>', page.text)[0])
+                    #event['date'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[0])
+                    #event['place'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[2])
+                    #event['address'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[3])
+                    #event['description'] = ''
+
+                    driver.get(link)
+                    event['name'] = h.unescape(re.findall('<title>(.*)</title>', driver.page_source)[0])
+                    event['date'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)[1])
+                    event['place'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)[4])
+                    event['address'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)[5])
                     event['description'] = ''
+
 
                     if "UTC" in event['date']:
                         event['timeZone'] = event['date'].split()[-1]
                         event['date'] = event['date'][:-len(event['timeZone'])]
+                        event['timeZone'] += ':00'
                     else:
                         event['timeZone'] = 'UTC'
 
-                    if ' - ' in event['date']:
+                    if u'\xb7' in event['date']:
+                        start, end = event['date'].split(u'\xb7')[1].split('-')
+                        event['start_time'] = dateparser.parse(start).isoformat()
+                        event['end_time'] = dateparser.parse(end).isoformat()
+                    elif ' - ' in event['date']:
                         start, end = event['date'].split('-')
                         if ' at ' not in end:
                             end = start.split()[:-2] + end.split()
@@ -181,8 +210,6 @@ def main():
                         event['start_time'] = dateparser.parse(event['date']).isoformat()
                         event['end_time'] = event['start_time']
 
-                    print(event)
-
                     # stopwords
                     bullshit_bingo = False
                     for word in STOPWORDS:
@@ -191,18 +218,18 @@ def main():
                             break
                     if bullshit_bingo:
                         continue
-                    elif event['name'] not in events_summary:
+                    elif event['name'] not in events_summary and dateparser.parse(event['start_time']) > dateparser.parse('yesterday'):
                         calendar_event_data = {
                             'summary': event['name'],
                             'location': ", ".join((event['place'], event['address'])),
                             'description': link + "\n\n" + event['description'],
                             'start': {
                                 'dateTime': event['start_time'],
-                                'timeZone': event['timeZone'] + ':00',
+                                'timeZone': event['timeZone'],
                             },
                             'end': {
                                 'dateTime': event['end_time'],
-                                'timeZone': event['timeZone'] + ':00',
+                                'timeZone': event['timeZone'],
                             }
                         }
                         calendar_event = service.events().insert(calendarId=calendarId, body=calendar_event_data).execute()
