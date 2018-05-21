@@ -247,6 +247,9 @@ def main():
                     print(er.__doc__)
                     # print(er.message)
 
+    # Close chrome driver
+    driver.quit()
+
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
     for e in rss['entries']:
