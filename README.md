@@ -70,6 +70,8 @@ Current sources of events:
 - https://www.facebook.com/pg/cyberfund
 - https://www.facebook.com/blockchainmeetups
 - https://www.facebook.com/groups/iot.belarus.community
+- https://www.facebook.com/groups/itportal.by
+- https://www.facebook.com/groups/iloveFSP
 
 Enabled only if facebook events is empty
 - https://events.dev.by/rss

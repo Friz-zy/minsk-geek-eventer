@@ -78,6 +78,8 @@ FACEBOOK= [
   u"cyberfund",
   u"blockchainmeetups",
   u"iot.belarus.community",
+  u"itportal.by",
+  u"iloveFSP",
 ]
 
 STOPWORDS = [
@@ -195,7 +197,7 @@ def main():
                         if event['timeZone'] != 'UTC':
                             event['timeZone'] += ':00'
                     else:
-                        event['timeZone'] = 'UTC'
+                        event['timeZone'] = 'UTC+03:00'
 
                     if u'\xb7' in event['date']:
                         start, end = event['date'].split(u'\xb7')[1].split('-')
