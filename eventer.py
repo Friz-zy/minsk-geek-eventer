@@ -80,6 +80,9 @@ FACEBOOK= [
   u"iot.belarus.community",
   u"itportal.by",
   u"iloveFSP",
+  u"myfreedom.by",
+  u"Marketing.by",
+  u"gusarovgroup",
 ]
 
 STOPWORDS = [

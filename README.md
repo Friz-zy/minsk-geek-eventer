@@ -72,6 +72,9 @@ Current sources of events:
 - https://www.facebook.com/groups/iot.belarus.community
 - https://www.facebook.com/groups/itportal.by
 - https://www.facebook.com/groups/iloveFSP
+- https://www.facebook.com/myfreedom.by
+- https://www.facebook.com/Marketing.by
+- https://www.facebook.com/gusarovgroup
 
 Enabled only if facebook events is empty
 - https://events.dev.by/rss
