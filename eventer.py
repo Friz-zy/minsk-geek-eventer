@@ -180,7 +180,6 @@ def main():
 
     # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads
     chrome_driver = "/usr/lib/chromium-browser/chromedriver"
-    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
 
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
@@ -247,9 +246,12 @@ def main():
             link = 'https://m.facebook.com/{0}/events'.format(page)
             print('Getting events from {}'.format(link))
             #page = requests.get(link, headers=HEADERS)
+            driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
             driver.get(link)
             # get 14 next events
             ids = re.findall('href="/events/([0-9]*)\?', driver.page_source)
+            # Close chrome driver
+            driver.quit()
 
             for id in ids:
                 try:
@@ -262,6 +264,7 @@ def main():
                     #event['address'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', page.text)[3])
                     #event['description'] = ''
 
+                    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
                     driver.get(link)
                     event['name'] = h.unescape(re.findall('<title>(.*)</title>', driver.page_source)[0])
                     event['date'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)[1])
@@ -327,14 +330,15 @@ def main():
 
                         events_summary.append(event['name'])
                         facebook_events.append(event)
+                        # Close chrome driver
+                        driver.quit()
                 except Exception as er:
                     print("Can't add '{}' event".format(link))
                     print(event)
                     print(er.__doc__)
                     # print(er.message)
-
-    # Close chrome driver
-    driver.quit()
+                    # Close chrome driver
+                    driver.quit()
 
     # TODO:
     # http://www.park.by/cat-38/
