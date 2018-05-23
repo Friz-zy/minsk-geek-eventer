@@ -251,6 +251,7 @@ def main():
             # get 14 next events
             ids = re.findall('href="/events/([0-9]*)\?', driver.page_source)
             # Close chrome driver
+            driver.close()
             driver.quit()
 
             for id in ids:
@@ -330,14 +331,14 @@ def main():
 
                         events_summary.append(event['name'])
                         facebook_events.append(event)
-                        # Close chrome driver
-                        driver.quit()
                 except Exception as er:
                     print("Can't add '{}' event".format(link))
                     print(event)
                     print(er.__doc__)
                     # print(er.message)
+                finally:
                     # Close chrome driver
+                    driver.close()
                     driver.quit()
 
     # TODO:
