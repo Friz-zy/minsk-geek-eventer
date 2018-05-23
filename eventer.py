@@ -114,6 +114,27 @@ def get_credentials():
         print('Storing credentials to ' + CLIENT_CREDENTIALS_FILE)
     return credentials
 
+# https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#Python
+def levenshtein(s1, s2):
+    if len(s1) < len(s2):
+        return levenshtein(s2, s1)
+
+    # len(s1) >= len(s2)
+    if len(s2) == 0:
+        return len(s1)
+
+    previous_row = range(len(s2) + 1)
+    for i, c1 in enumerate(s1):
+        current_row = [i + 1]
+        for j, c2 in enumerate(s2):
+            insertions = previous_row[j + 1] + 1 # j+1 instead of j since previous_row and current_row are one character longer
+            deletions = current_row[j] + 1       # than s2
+            substitutions = previous_row[j] + (c1 != c2)
+            current_row.append(min(insertions, deletions, substitutions))
+        previous_row = current_row
+
+    return previous_row[-1]
+
 def main():
     """"""
     credentials = get_credentials()
@@ -159,9 +180,64 @@ def main():
 
     # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads
     chrome_driver = "/usr/lib/chromium-browser/chromedriver"
-
     driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
 
+    print('Parsing events.dev.by rss')
+    rss = feedparser.parse('https://events.dev.by/rss')
+    for e in rss['entries']:
+        # stopwords
+        bullshit_bingo = False
+        for word in STOPWORDS:
+            if word in e['title']:
+                bullshit_bingo = "Bingo!"
+                break
+
+        duplicate = False
+        for es in events_summary:
+            if levenshtein(e['title'], es) < (len(e['title']) + len(es))*0.3/2:
+                duplicate = True
+                break
+
+        if bullshit_bingo or duplicate:
+            continue
+        try:
+            page = requests.get(e['link'])
+            desc = page.text[page.text.find("<div class='text'>")+18:page.text.find("</div>", page.text.find("<div class='text'>"))]
+            desc = desc.replace('&laquo;', '"')
+            desc = desc.replace('&raquo;', '"')
+            desc = desc.replace('&nbsp;', ' ')
+            desc = desc.replace('&ndash;', ' - ')
+            desc = re.sub(r'\s*<li>', '- ', desc)
+            desc = re.sub(r'\s*</li>', '\n', desc)
+            desc = re.sub(r'\n\n+', '\n', desc)
+            desc = re.sub(r'&.+;', '', desc)
+            desc = re.sub(r'<(?!\/?a(?=>|\s.*>))\/?.*?>', '', desc)
+            location = page.text[page.text.find("&location=")+10:page.text.find("&", page.text.find("&location=")+10)]
+            dates = page.text[page.text.find("dates=")+6:page.text.find("&", page.text.find("dates="))]
+
+            event = {
+                'summary': e['title'],
+                'location': location,
+                'description': e['link'] + "\n" + desc,
+                'start': {
+                    'dateTime': datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S").isoformat(),
+                    'timeZone': 'GMT',
+                },
+                'end': {
+                    'dateTime': datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S").isoformat(),
+                    'timeZone': 'GMT',
+                }
+            }
+            event = service.events().insert(calendarId=calendarId, body=event).execute()
+            print('Event created: {}'.format(event.get('htmlLink')))
+
+            events_summary.append(e['title'])
+        except Exception as er:
+            raise
+            print("Can't add '{}' event".format(e['title']))
+            print(event)
+            print(er.__doc__)
+            print(er.message)
 
     # Facebook
     # Facebook closed their graph api so now we would parse it manually
@@ -223,9 +299,16 @@ def main():
                         if word in event['name']:
                             bullshit_bingo = "Bingo!"
                             break
-                    if bullshit_bingo:
+
+                    duplicate = False
+                    for es in events_summary:
+                        if levenshtein(event['name'], es) < (len(event['name']) + len(es))*0.3/2:
+                            duplicate = True
+                            break
+
+                    if bullshit_bingo or duplicate:
                         continue
-                    elif event['name'] not in events_summary and dateparser.parse(event['start_time']) > dateparser.parse('yesterday'):
+                    elif dateparser.parse(event['start_time']) > dateparser.parse('yesterday'):
                         calendar_event_data = {
                             'summary': event['name'],
                             'location': ", ".join((event['place'], event['address'])),
@@ -252,63 +335,6 @@ def main():
 
     # Close chrome driver
     driver.quit()
-
-    print('Parsing events.dev.by rss')
-    rss = feedparser.parse('https://events.dev.by/rss')
-    for e in rss['entries']:
-        # Enable it back but only while facebook disabled api
-        # https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes
-        if facebook_events:
-            break
-
-        # stopwords
-        bullshit_bingo = False
-        for word in STOPWORDS:
-            if word in e['title']:
-                bullshit_bingo = "Bingo!"
-                break
-        if bullshit_bingo:
-            continue
-        elif e['title'] not in events_summary:
-            try:
-                page = requests.get(e['link'])
-                desc = page.text[page.text.find("<div class='text'>")+18:page.text.find("</div>", page.text.find("<div class='text'>"))]
-                desc = desc.replace('&laquo;', '"')
-                desc = desc.replace('&raquo;', '"')
-                desc = desc.replace('&nbsp;', ' ')
-                desc = desc.replace('&ndash;', ' - ')
-                desc = re.sub(r'\s*<li>', '- ', desc)
-                desc = re.sub(r'\s*</li>', '\n', desc)
-                desc = re.sub(r'\n\n+', '\n', desc)
-                desc = re.sub(r'&.+;', '', desc)
-                desc = re.sub(r'<(?!\/?a(?=>|\s.*>))\/?.*?>', '', desc)
-                location = page.text[page.text.find("&location=")+10:page.text.find("&", page.text.find("&location=")+10)]
-                dates = page.text[page.text.find("dates=")+6:page.text.find("&", page.text.find("dates="))]
-
-                event = {
-                    'summary': e['title'],
-                    'location': location,
-                    'description': e['link'] + "\n" + desc,
-                    'start': {
-                        'dateTime': datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'GMT',
-                    },
-                    'end': {
-                        'dateTime': datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S").isoformat(),
-                        'timeZone': 'GMT',
-                    }
-                }
-                event = service.events().insert(calendarId=calendarId, body=event).execute()
-                print('Event created: {}'.format(event.get('htmlLink')))
-
-                events_summary.append(e['title'])
-            except Exception as er:
-                raise
-                print("Can't add '{}' event".format(e['title']))
-                print(event)
-                print(er.__doc__)
-                print(er.message)
-
 
     # TODO:
     # http://www.park.by/cat-38/

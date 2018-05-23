@@ -76,7 +76,6 @@ Current sources of events:
 - https://www.facebook.com/Marketing.by
 - https://www.facebook.com/gusarovgroup
 
-Enabled only if facebook events is empty
 - https://events.dev.by/rss
 
 Possible sources:
