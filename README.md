@@ -75,6 +75,7 @@ Current sources of events:
 - https://www.facebook.com/myfreedom.by
 - https://www.facebook.com/Marketing.by
 - https://www.facebook.com/gusarovgroup
+- https://www.facebook.com/pg/truestoryclub
 
 - https://events.dev.by/rss
 

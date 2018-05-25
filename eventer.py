@@ -83,6 +83,7 @@ FACEBOOK= [
   u"myfreedom.by",
   u"Marketing.by",
   u"gusarovgroup",
+  u"truestoryclub",
 ]
 
 STOPWORDS = [
