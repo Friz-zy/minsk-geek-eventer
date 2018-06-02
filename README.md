@@ -34,7 +34,7 @@ Current sources of events:
 - https://www.facebook.com/pg/john.galt.space.minsk
 - http://www.facebook.com/cech.by
 - https://www.facebook.com/HTPBelarus
-- https://www.facebook.com/cultcenterkorpus
+- https://www.facebook.com/cultkorpus
 - https://www.facebook.com/komn302
 - https://www.facebook.com/Talaka.by
 - https://www.facebook.com/hs.minsk

@@ -42,7 +42,7 @@ FACEBOOK= [
   u"john.galt.space.minsk",
   u"cech.by",
   u"HTPBelarus",
-  u"cultcenterkorpus",
+  u"cultkorpus",
   u"komn302",
   u"Talaka.by",
   u"hs.minsk",
