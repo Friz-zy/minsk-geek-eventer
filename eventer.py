@@ -233,11 +233,10 @@ def main():
 
             events_summary.append(e['title'])
         except Exception as er:
-            raise
             print("Can't add '{}' event".format(e['title']))
             print(event)
             print(er.__doc__)
-            print(er.message)
+            #print(er.message)
 
     # Facebook
     # Facebook closed their graph api so now we would parse it manually
