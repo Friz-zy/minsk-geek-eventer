@@ -86,6 +86,7 @@ FACEBOOK= [
   u"truestoryclub",
   u"okt16",
   u"humanlibraryby",
+  u"massaraksh.minsk",
 ]
 
 STOPWORDS = [
