@@ -270,10 +270,15 @@ def main():
 
                     driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
                     driver.get(link)
+                    fields = re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)
+                    for field in list(fields):
+                        for stopword in ('is on Facebook', 'log into Facebook', 'join Facebook today'):
+                            if stopword in field:
+                                fields.remove(field)
                     event['name'] = h.unescape(re.findall('<title>(.*)</title>', driver.page_source)[0])
-                    event['date'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)[1])
-                    event['place'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)[4])
-                    event['address'] = h.unescape(re.findall('<div class="[^>]*>([^<]*)</div>', driver.page_source)[5])
+                    event['date'] = h.unescape(fields[1])
+                    event['place'] = h.unescape(fields[4])
+                    event['address'] = h.unescape(fields[5])
                     event['description'] = ''
 
 
