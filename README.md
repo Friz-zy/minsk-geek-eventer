@@ -76,6 +76,8 @@ Current sources of events:
 - https://www.facebook.com/Marketing.by
 - https://www.facebook.com/gusarovgroup
 - https://www.facebook.com/pg/truestoryclub
+- https://www.facebook.com/okt16
+- https://www.facebook.com/humanlibraryby
 
 - https://events.dev.by/rss
 

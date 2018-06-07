@@ -84,6 +84,8 @@ FACEBOOK= [
   u"Marketing.by",
   u"gusarovgroup",
   u"truestoryclub",
+  u"okt16",
+  u"humanlibraryby",
 ]
 
 STOPWORDS = [
