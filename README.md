@@ -79,6 +79,8 @@ Current sources of events:
 - https://www.facebook.com/okt16
 - https://www.facebook.com/humanlibraryby
 - https://www.facebook.com/massaraksh.minsk
+- https://www.facebook.com/prowomenby
+- https://www.facebook.com/pg/pressclubbelarus
 
 - https://events.dev.by/rss
 
