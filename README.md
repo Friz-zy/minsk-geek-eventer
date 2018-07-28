@@ -81,6 +81,8 @@ Current sources of events:
 - https://www.facebook.com/massaraksh.minsk
 - https://www.facebook.com/prowomenby
 - https://www.facebook.com/pg/pressclubbelarus
+- https://www.facebook.com/pg/btnkby
+- https://www.facebook.com/pg/ShafaMinsk
 
 - https://events.dev.by/rss
 

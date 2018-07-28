@@ -89,6 +89,8 @@ FACEBOOK= [
   u"massaraksh.minsk",
   u"prowomenby",
   u"pressclubbelarus",
+  u"btnkby",
+  u"ShafaMinsk",
 ]
 
 STOPWORDS = [
