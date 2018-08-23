@@ -329,7 +329,7 @@ def main():
 
                     if bullshit_bingo or duplicate:
                         continue
-                    elif dateparser.parse(event['start_time']) > dateparser.parse('yesterday'):
+                    elif dateparser.parse(event['start_time']) >= dateparser.parse('today'):
                         calendar_event_data = {
                             'summary': event['name'],
                             'location': ", ".join((event['place'], event['address'])),
