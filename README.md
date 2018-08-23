@@ -83,6 +83,11 @@ Current sources of events:
 - https://www.facebook.com/pg/pressclubbelarus
 - https://www.facebook.com/pg/btnkby
 - https://www.facebook.com/pg/ShafaMinsk
+- https://www.facebook.com/pg/FThBelarus
+- https://www.facebook.com/minsklegalhackers
+- https://www.facebook.com/salesolution.by
+- https://www.facebook.com/210metrov
+- https://www.facebook.com/ideatobiz
 
 - https://events.dev.by/rss
 

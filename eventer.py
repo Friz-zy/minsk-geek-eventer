@@ -91,6 +91,11 @@ FACEBOOK= [
   u"pressclubbelarus",
   u"btnkby",
   u"ShafaMinsk",
+  u"FThBelarus",
+  u"minsklegalhackers",
+  u"salesolution.by",
+  u"210metrov",
+  u"ideatobiz",
 ]
 
 STOPWORDS = [
