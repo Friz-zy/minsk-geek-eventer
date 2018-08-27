@@ -96,6 +96,8 @@ FACEBOOK= [
   u"salesolution.by",
   u"210metrov",
   u"ideatobiz",
+  u"pokateplo",
+  u"instinctools.belarus",
 ]
 
 STOPWORDS = [

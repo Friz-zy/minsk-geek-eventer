@@ -88,6 +88,8 @@ Current sources of events:
 - https://www.facebook.com/salesolution.by
 - https://www.facebook.com/210metrov
 - https://www.facebook.com/ideatobiz
+- https://www.facebook.com/pokateplo
+- https://www.facebook.com/instinctools.belarus
 
 - https://events.dev.by/rss
 
