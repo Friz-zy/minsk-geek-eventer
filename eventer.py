@@ -98,6 +98,7 @@ FACEBOOK= [
   u"ideatobiz",
   u"pokateplo",
   u"instinctools.belarus",
+  u"minskchangemakers",
 ]
 
 STOPWORDS = [

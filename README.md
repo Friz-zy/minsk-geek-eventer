@@ -90,6 +90,7 @@ Current sources of events:
 - https://www.facebook.com/ideatobiz
 - https://www.facebook.com/pokateplo
 - https://www.facebook.com/instinctools.belarus
+- https://www.facebook.com/minskchangemakers/
 
 - https://events.dev.by/rss
 
