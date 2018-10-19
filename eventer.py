@@ -190,7 +190,7 @@ def main():
     # instantiate a chrome options object so you can set the size and headless preference
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=800x5000")
+    chrome_options.add_argument("--window-size=800x1500")
     chrome_options.add_argument('--no-sandbox') # fix for running from root
     chrome_options.add_argument("-lang=en")
 
@@ -308,6 +308,13 @@ def main():
                         event['end_time'] = dateparser.parse(end).isoformat()
                     elif ' - ' in event['date']:
                         start, end = event['date'].split('-')
+                        if ' at ' not in end:
+                            end = start.split()[:-2] + end.split()
+                            end = ' '.join(end)
+                        event['start_time'] = dateparser.parse(start).isoformat()
+                        event['end_time'] = dateparser.parse(end).isoformat()
+                    elif ' – ' in event['date']:
+                        start, end = event['date'].split('–')
                         if ' at ' not in end:
                             end = start.split()[:-2] + end.split()
                             end = ' '.join(end)
