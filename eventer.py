@@ -99,6 +99,7 @@ FACEBOOK= [
   u"pokateplo",
   u"instinctools.belarus",
   u"minskchangemakers",
+  u"HTPCommunity",
 ]
 
 STOPWORDS = [

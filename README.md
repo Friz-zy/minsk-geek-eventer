@@ -91,6 +91,7 @@ Current sources of events:
 - https://www.facebook.com/pokateplo
 - https://www.facebook.com/instinctools.belarus
 - https://www.facebook.com/minskchangemakers/
+- https://www.facebook.com/HTPCommunity
 
 - https://events.dev.by/rss
 
