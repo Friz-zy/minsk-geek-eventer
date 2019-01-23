@@ -157,7 +157,8 @@ def main():
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
-    now = datetime.datetime.utcnow().date().isoformat() + 'T00:00:00.000000Z' # 'Z' indicates UTC time
+    now = datetime.datetime.utcnow()
+    timeMin = (now.date() - datetime.timedelta(days=15)).isoformat() + 'T00:00:00.000000Z'
     calendarId = 'primary'
     h = HTMLParser()
 
@@ -177,7 +178,7 @@ def main():
     page_token = None
     while True:
         eventsResult = service.events().list(
-            calendarId=calendarId, timeMin=now, maxResults=2500, singleEvents=True,
+            calendarId=calendarId, timeMin=timeMin, maxResults=2500, singleEvents=True,
             orderBy='startTime', pageToken=page_token).execute()
         events.extend(eventsResult.get('items', []))
         page_token = eventsResult.get('nextPageToken')
@@ -230,17 +231,27 @@ def main():
             desc = re.sub(r'<(?!\/?a(?=>|\s.*>))\/?.*?>', '', desc)
             location = page.text[page.text.find("&location=")+10:page.text.find("&", page.text.find("&location=")+10)]
             dates = page.text[page.text.find("dates=")+6:page.text.find("&", page.text.find("dates="))]
+            start_date = datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S")
+            finish_date = datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S")
+
+            # remove courses more than 2 weeks from calendar
+            if (finish_date - start_date).days > 14:
+                # remove event if it started in the past
+                if (now - start_date).days > 0:
+                    continue
+                # otherwise add only one first day
+                finish_date = start_date + datetime.timedelta(days=1)
 
             event = {
                 'summary': e['title'],
                 'location': location,
                 'description': e['link'] + "\n" + desc,
                 'start': {
-                    'dateTime': datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S").isoformat(),
+                    'dateTime': start_date.isoformat(),
                     'timeZone': 'GMT',
                 },
                 'end': {
-                    'dateTime': datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S").isoformat(),
+                    'dateTime': finish_date.isoformat(),
                     'timeZone': 'GMT',
                 }
             }
