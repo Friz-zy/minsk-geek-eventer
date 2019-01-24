@@ -115,7 +115,6 @@ FACEBOOK= [
   u"GrodnoIT",
   u"fsharpminsk",
   u"1673382339595171", # rust.by
-  u"MinskCSS",
   u"nlproc.by",
   u"Pro-Net-community-323866207998632",
   u"salesforceprofessionalsby",

@@ -107,7 +107,6 @@ Current sources of events:
 - https://www.facebook.com/pg/GrodnoIT
 - https://www.facebook.com/groups/fsharpminsk
 - https://www.facebook.com/groups/1673382339595171 # rust.by
-- https://www.facebook.com/groups/MinskCSS
 - https://www.facebook.com/groups/nlproc.by
 - https://www.facebook.com/pg/Pro-Net-community-323866207998632
 - https://www.facebook.com/pg/salesforceprofessionalsby
