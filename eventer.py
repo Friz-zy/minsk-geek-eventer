@@ -100,6 +100,27 @@ FACEBOOK= [
   u"instinctools.belarus",
   u"minskchangemakers",
   u"HTPCommunity",
+  u"onlinerby",
+  u"4front",
+  u"AEMBelarus",
+  u"agileby",
+  u"BAinBY",
+  u"bygis",
+  u"iosby",
+  u"free.code.camp.Minsk",
+  u"gophers.by",
+  u"gowaymeetup",
+  u"grodnonetcommunity",
+  u"GrodnoBA",
+  u"GrodnoIT",
+  u"fsharpminsk",
+  u"1673382339595171", # rust.by
+  u"MinskCSS",
+  u"nlproc.by",
+  u"Pro-Net-community-323866207998632",
+  u"salesforceprofessionalsby",
+  u"SolutionArchitectureGomel",
+  u"storm.the.front",
 ]
 
 STOPWORDS = [

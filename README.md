@@ -92,6 +92,27 @@ Current sources of events:
 - https://www.facebook.com/instinctools.belarus
 - https://www.facebook.com/minskchangemakers/
 - https://www.facebook.com/HTPCommunity
+- https://www.facebook.com/pg/onlinerby
+- https://www.facebook.com/groups/4front
+- https://www.facebook.com/groups/AEMBelarus
+- https://www.facebook.com/agileby
+- https://www.facebook.com/groups/BAinBY
+- https://www.facebook.com/groups/bygis
+- https://www.facebook.com/groups/iosby
+- https://www.facebook.com/groups/free.code.camp.Minsk
+- https://www.facebook.com/groups/gophers.by
+- https://www.facebook.com/pg/gowaymeetup
+- https://www.facebook.com/pg/grodnonetcommunity
+- https://www.facebook.com/pg/GrodnoBA
+- https://www.facebook.com/pg/GrodnoIT
+- https://www.facebook.com/groups/fsharpminsk
+- https://www.facebook.com/groups/1673382339595171 # rust.by
+- https://www.facebook.com/groups/MinskCSS
+- https://www.facebook.com/groups/nlproc.by
+- https://www.facebook.com/pg/Pro-Net-community-323866207998632
+- https://www.facebook.com/pg/salesforceprofessionalsby
+- https://www.facebook.com/groups/SolutionArchitectureGomel
+- https://www.facebook.com/groups/storm.the.front
 
 - https://events.dev.by/rss
 
