@@ -112,6 +112,7 @@ Current sources of events:
 - https://www.facebook.com/pg/salesforceprofessionalsby
 - https://www.facebook.com/groups/SolutionArchitectureGomel
 - https://www.facebook.com/groups/storm.the.front
+- https://www.facebook.com/prdrivemedia/
 
 - https://events.dev.by/rss
 

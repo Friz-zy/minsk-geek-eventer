@@ -120,6 +120,7 @@ FACEBOOK= [
   u"salesforceprofessionalsby",
   u"SolutionArchitectureGomel",
   u"storm.the.front",
+  u"prdrivemedia",
 ]
 
 STOPWORDS = [
