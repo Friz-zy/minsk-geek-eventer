@@ -121,6 +121,10 @@ FACEBOOK= [
   u"SolutionArchitectureGomel",
   u"storm.the.front",
   u"prdrivemedia",
+  u"minskcraftbeerfest",
+  u"eventminsk.by",
+  u"ItBDSMinsk",
+  u"mymondayby",
 ]
 
 STOPWORDS = [

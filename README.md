@@ -113,6 +113,10 @@ Current sources of events:
 - https://www.facebook.com/groups/SolutionArchitectureGomel
 - https://www.facebook.com/groups/storm.the.front
 - https://www.facebook.com/prdrivemedia/
+- https://www.facebook.com/minskcraftbeerfest
+- https://www.facebook.com/eventminsk.by
+- https://www.facebook.com/ItBDSMinsk
+- https://www.facebook.com/pg/mymondayby
 
 - https://events.dev.by/rss
 
