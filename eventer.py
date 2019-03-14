@@ -125,6 +125,7 @@ FACEBOOK= [
   u"eventminsk.by",
   u"ItBDSMinsk",
   u"mymondayby",
+  u"edu4future.by",
 ]
 
 STOPWORDS = [

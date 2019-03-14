@@ -117,6 +117,7 @@ Current sources of events:
 - https://www.facebook.com/eventminsk.by
 - https://www.facebook.com/ItBDSMinsk
 - https://www.facebook.com/pg/mymondayby
+- https://www.facebook.com/pg/edu4future.by
 
 - https://events.dev.by/rss
 
