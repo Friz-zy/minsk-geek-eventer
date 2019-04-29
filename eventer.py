@@ -127,6 +127,7 @@ FACEBOOK= [
   u"mymondayby",
   u"edu4future.by",
   u"minsk.ikraikra",
+  u"minskshift",
 ]
 
 STOPWORDS = [
