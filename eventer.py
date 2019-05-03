@@ -128,6 +128,7 @@ FACEBOOK= [
   u"edu4future.by",
   u"minsk.ikraikra",
   u"minskshift",
+  u"ideatobiz",
 ]
 
 STOPWORDS = [

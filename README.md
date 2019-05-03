@@ -120,6 +120,7 @@ Current sources of events:
 - https://www.facebook.com/pg/edu4future.by
 - https://www.facebook.com/minsk.ikraikra
 - https://www.facebook.com/minskshift
+- https://www.facebook.com/pg/ideatobiz
 
 - https://events.dev.by/rss
 
