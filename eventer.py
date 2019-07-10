@@ -121,6 +121,7 @@ FACEBOOK= [
   u"SolutionArchitectureGomel",
   u"storm.the.front",
   u"prdrivemedia",
+  u"potantseval",
 ]
 
 STOPWORDS = [
