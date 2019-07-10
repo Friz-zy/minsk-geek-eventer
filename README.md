@@ -114,6 +114,14 @@ Current sources of events:
 - https://www.facebook.com/groups/storm.the.front
 - https://www.facebook.com/prdrivemedia/
 - https://www.facebook.com/pg/potantseval
+- https://www.facebook.com/minskcraftbeerfest
+- https://www.facebook.com/eventminsk.by
+- https://www.facebook.com/ItBDSMinsk
+- https://www.facebook.com/pg/mymondayby
+- https://www.facebook.com/pg/edu4future.by
+- https://www.facebook.com/minsk.ikraikra
+- https://www.facebook.com/minskshift
+- https://www.facebook.com/pg/ideatobiz
 
 - https://events.dev.by/rss
 

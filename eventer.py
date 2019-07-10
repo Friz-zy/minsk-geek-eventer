@@ -122,6 +122,14 @@ FACEBOOK= [
   u"storm.the.front",
   u"prdrivemedia",
   u"potantseval",
+  u"minskcraftbeerfest",
+  u"eventminsk.by",
+  u"ItBDSMinsk",
+  u"mymondayby",
+  u"edu4future.by",
+  u"minsk.ikraikra",
+  u"minskshift",
+  u"ideatobiz",
 ]
 
 STOPWORDS = [
@@ -219,7 +227,7 @@ def main():
     chrome_options.add_argument("-lang=en")
 
     # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads
-    chrome_driver = "/usr/lib/chromium-browser/chromedriver"
+    chrome_driver = "/usr/bin/chromedriver"
 
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
