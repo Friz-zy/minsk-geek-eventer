@@ -122,6 +122,7 @@ Current sources of events:
 - https://www.facebook.com/minsk.ikraikra
 - https://www.facebook.com/minskshift
 - https://www.facebook.com/pg/ideatobiz
+- https://www.facebook.com/bevisualstudio
 
 - https://events.dev.by/rss
 

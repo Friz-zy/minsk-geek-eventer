@@ -130,6 +130,7 @@ FACEBOOK= [
   u"minsk.ikraikra",
   u"minskshift",
   u"ideatobiz",
+  u"bevisualstudio",
 ]
 
 STOPWORDS = [
