@@ -131,6 +131,7 @@ FACEBOOK= [
   u"minskshift",
   u"ideatobiz",
   u"bevisualstudio",
+  u"MefodijBookClub",
 ]
 
 STOPWORDS = [

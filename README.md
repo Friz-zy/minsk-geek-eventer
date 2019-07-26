@@ -123,6 +123,7 @@ Current sources of events:
 - https://www.facebook.com/minskshift
 - https://www.facebook.com/pg/ideatobiz
 - https://www.facebook.com/bevisualstudio
+- https://www.facebook.com/MefodijBookClub
 
 - https://events.dev.by/rss
 
