@@ -124,6 +124,7 @@ Current sources of events:
 - https://www.facebook.com/pg/ideatobiz
 - https://www.facebook.com/bevisualstudio
 - https://www.facebook.com/MefodijBookClub
+- https://www.facebook.com/pg/vulicabrasil
 
 - https://events.dev.by/rss
 

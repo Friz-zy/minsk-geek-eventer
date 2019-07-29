@@ -132,6 +132,7 @@ FACEBOOK= [
   u"ideatobiz",
   u"bevisualstudio",
   u"MefodijBookClub",
+  u"vulicabrasil",
 ]
 
 STOPWORDS = [
