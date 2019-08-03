@@ -134,6 +134,7 @@ FACEBOOK= [
   u"MefodijBookClub",
   u"vulicabrasil",
   u"pokursuby",
+  u"ScienceSoftPeople",
 ]
 
 STOPWORDS = [

@@ -126,6 +126,7 @@ Current sources of events:
 - https://www.facebook.com/MefodijBookClub
 - https://www.facebook.com/pg/vulicabrasil
 - https://www.facebook.com/pg/pokursuby
+- https://www.facebook.com/pg/ScienceSoftPeople
 
 - https://events.dev.by/rss
 
