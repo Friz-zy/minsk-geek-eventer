@@ -133,6 +133,7 @@ FACEBOOK= [
   u"bevisualstudio",
   u"MefodijBookClub",
   u"vulicabrasil",
+  u"pokursuby",
 ]
 
 STOPWORDS = [
