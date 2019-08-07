@@ -127,6 +127,8 @@ Current sources of events:
 - https://www.facebook.com/pg/vulicabrasil
 - https://www.facebook.com/pg/pokursuby
 - https://www.facebook.com/pg/ScienceSoftPeople
+- https://www.facebook.com/beerncider
+- https://www.facebook.com/scifestby
 
 - https://events.dev.by/rss
 

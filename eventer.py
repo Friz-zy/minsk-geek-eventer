@@ -135,6 +135,8 @@ FACEBOOK= [
   u"vulicabrasil",
   u"pokursuby",
   u"ScienceSoftPeople",
+  u"beerncider",
+  u"scifestby",
 ]
 
 STOPWORDS = [
