@@ -129,6 +129,7 @@ Current sources of events:
 - https://www.facebook.com/pg/ScienceSoftPeople
 - https://www.facebook.com/beerncider
 - https://www.facebook.com/scifestby
+- https://www.facebook.com/lektorij.by
 
 - https://events.dev.by/rss
 

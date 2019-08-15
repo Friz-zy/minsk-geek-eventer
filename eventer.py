@@ -137,6 +137,7 @@ FACEBOOK= [
   u"ScienceSoftPeople",
   u"beerncider",
   u"scifestby",
+  u"lektorij.by",
 ]
 
 STOPWORDS = [
