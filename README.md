@@ -130,6 +130,7 @@ Current sources of events:
 - https://www.facebook.com/beerncider
 - https://www.facebook.com/scifestby
 - https://www.facebook.com/lektorij.by
+- https://www.facebook.com/belarusmini
 
 - https://events.dev.by/rss
 

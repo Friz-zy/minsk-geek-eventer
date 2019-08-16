@@ -138,6 +138,7 @@ FACEBOOK= [
   u"beerncider",
   u"scifestby",
   u"lektorij.by",
+  u"belarusmini",
 ]
 
 STOPWORDS = [
