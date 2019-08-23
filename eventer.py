@@ -139,6 +139,8 @@ FACEBOOK= [
   u"scifestby",
   u"lektorij.by",
   u"belarusmini",
+  u"pesochnica.minsk",
+  u"symbalby",
 ]
 
 STOPWORDS = [

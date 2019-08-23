@@ -131,6 +131,8 @@ Current sources of events:
 - https://www.facebook.com/scifestby
 - https://www.facebook.com/lektorij.by
 - https://www.facebook.com/belarusmini
+- https://www.facebook.com/pesochnica.minsk
+- https://www.facebook.com/pg/symbalby
 
 - https://events.dev.by/rss
 
