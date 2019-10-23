@@ -133,6 +133,7 @@ Current sources of events:
 - https://www.facebook.com/belarusmini
 - https://www.facebook.com/pesochnica.minsk
 - https://www.facebook.com/pg/symbalby
+- https://www.facebook.com/redjacketsteam
 
 - https://events.dev.by/rss
 

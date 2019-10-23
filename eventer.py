@@ -141,6 +141,7 @@ FACEBOOK= [
   u"belarusmini",
   u"pesochnica.minsk",
   u"symbalby",
+  u"redjacketsteam",
 ]
 
 STOPWORDS = [
