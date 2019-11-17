@@ -135,6 +135,8 @@ Current sources of events:
 - https://www.facebook.com/pg/symbalby
 - https://www.facebook.com/redjacketsteam
 - https://www.facebook.com/belarusdigitalconference
+- https://www.facebook.com/reallyfreemarketminsk
+- https://www.facebook.com/pasternakmarket
 
 - https://events.dev.by/rss
 

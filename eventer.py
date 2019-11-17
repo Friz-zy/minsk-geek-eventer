@@ -143,6 +143,8 @@ FACEBOOK= [
   u"symbalby",
   u"redjacketsteam",
   u"belarusdigitalconference",
+  u"reallyfreemarketminsk",
+  u"pasternakmarket",
 ]
 
 STOPWORDS = [
