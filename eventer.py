@@ -145,6 +145,7 @@ FACEBOOK= [
   u"belarusdigitalconference",
   u"reallyfreemarketminsk",
   u"pasternakmarket",
+  u"tedxminsk",
 ]
 
 STOPWORDS = [

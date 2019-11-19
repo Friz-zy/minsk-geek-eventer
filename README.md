@@ -137,6 +137,7 @@ Current sources of events:
 - https://www.facebook.com/belarusdigitalconference
 - https://www.facebook.com/reallyfreemarketminsk
 - https://www.facebook.com/pasternakmarket
+- https://www.facebook.com/tedxminsk
 
 - https://events.dev.by/rss
 
