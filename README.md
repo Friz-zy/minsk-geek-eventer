@@ -138,6 +138,7 @@ Current sources of events:
 - https://www.facebook.com/reallyfreemarketminsk
 - https://www.facebook.com/pasternakmarket
 - https://www.facebook.com/tedxminsk
+- https://www.facebook.com/SUPCOMMUNITY
 
 - https://events.dev.by/rss
 

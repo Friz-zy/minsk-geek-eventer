@@ -146,6 +146,7 @@ FACEBOOK= [
   u"reallyfreemarketminsk",
   u"pasternakmarket",
   u"tedxminsk",
+  u"SUPCOMMUNITY",
 ]
 
 STOPWORDS = [
