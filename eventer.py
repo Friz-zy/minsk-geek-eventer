@@ -147,6 +147,7 @@ FACEBOOK= [
   u"pasternakmarket",
   u"tedxminsk",
   u"SUPCOMMUNITY",
+  u"Andersensoft",
 ]
 
 STOPWORDS = [

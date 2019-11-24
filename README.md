@@ -139,6 +139,7 @@ Current sources of events:
 - https://www.facebook.com/pasternakmarket
 - https://www.facebook.com/tedxminsk
 - https://www.facebook.com/SUPCOMMUNITY
+- https://www.facebook.com/Andersensoft
 
 - https://events.dev.by/rss
 
