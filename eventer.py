@@ -148,6 +148,7 @@ FACEBOOK= [
   u"tedxminsk",
   u"SUPCOMMUNITY",
   u"Andersensoft",
+  u"GoodStartBy",
 ]
 
 STOPWORDS = [
