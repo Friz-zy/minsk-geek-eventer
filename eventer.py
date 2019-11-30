@@ -149,6 +149,8 @@ FACEBOOK= [
   u"SUPCOMMUNITY",
   u"Andersensoft",
   u"GoodStartBy",
+  u"FirstnerBY",
+  u"kraftblick",
 ]
 
 STOPWORDS = [
