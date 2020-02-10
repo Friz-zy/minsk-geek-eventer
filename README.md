@@ -143,6 +143,7 @@ Current sources of events:
 - https://www.facebook.com/GoodStartBy
 - https://www.facebook.com/FirstnerBY
 - https://www.facebook.com/kraftblick
+- https://www.facebook.com/hrmstudioru
 
 - https://events.dev.by/rss
 

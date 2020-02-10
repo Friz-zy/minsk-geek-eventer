@@ -151,6 +151,7 @@ FACEBOOK= [
   u"GoodStartBy",
   u"FirstnerBY",
   u"kraftblick",
+  u"hrmstudioru",
 ]
 
 STOPWORDS = [
