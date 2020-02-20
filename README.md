@@ -144,6 +144,22 @@ Current sources of events:
 - https://www.facebook.com/FirstnerBY
 - https://www.facebook.com/kraftblick
 - https://www.facebook.com/hrmstudioru
+- https://www.facebook.com/igrow.by
+- https://www.facebook.com/quidox.by
+- https://www.facebook.com/facultativ.by
+- https://www.facebook.com/cashflowoligarh
+- https://www.facebook.com/SBHlawBY
+- https://www.facebook.com/polygonby
+- https://www.facebook.com/pronetby
+- https://www.facebook.com/maretskayaschool
+- https://www.facebook.com/ygallery.by
+- https://www.facebook.com/Humatheq
+- https://www.facebook.com/ZISconsultgroup
+- https://www.facebook.com/fashion.market.by
+- https://www.facebook.com/confuciustechnic21.10.2014
+- https://www.facebook.com/gallery.libra
+- https://www.facebook.com/paralect
+- https://www.facebook.com/www.nlb.by
 
 - https://events.dev.by/rss
 

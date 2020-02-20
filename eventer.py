@@ -152,6 +152,22 @@ FACEBOOK= [
   u"FirstnerBY",
   u"kraftblick",
   u"hrmstudioru",
+  u"igrow.by",
+  u"quidox.by",
+  u"facultativ.by",
+  u"cashflowoligarh",
+  u"SBHlawBY",
+  u"polygonby",
+  u"pronetby",
+  u"maretskayaschool",
+  u"ygallery.by",
+  u"Humatheq",
+  u"ZISconsultgroup",
+  u"fashion.market.by",
+  u"confuciustechnic21.10.2014",
+  u"gallery.libra",
+  u"paralect",
+  u"www.nlb.by",
 ]
 
 STOPWORDS = [
