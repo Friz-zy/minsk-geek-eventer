@@ -160,6 +160,7 @@ Current sources of events:
 - https://www.facebook.com/gallery.libra
 - https://www.facebook.com/paralect
 - https://www.facebook.com/www.nlb.by
+- https://www.facebook.com/homeperfection.by
 
 - https://events.dev.by/rss
 

@@ -168,6 +168,7 @@ FACEBOOK= [
   u"gallery.libra",
   u"paralect",
   u"www.nlb.by",
+  u"homeperfection.by",
 ]
 
 STOPWORDS = [
