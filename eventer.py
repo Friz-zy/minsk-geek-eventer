@@ -368,8 +368,10 @@ def main():
                         for stopword in ('is on Facebook', 'log into Facebook', 'join Facebook today'):
                             if stopword in field:
                                 fields.remove(field)
+
+                    print(fields) # for debug
                     event['name'] = h.unescape(re.findall('<title>(.*)</title>', driver.page_source)[0])
-                    event['date'] = h.unescape(fields[1])
+                    event['date'] = h.unescape(fields[2])
                     event['place'] = h.unescape(fields[4])
                     event['address'] = h.unescape(fields[5])
                     event['description'] = ''
