@@ -163,6 +163,7 @@ Current sources of events:
 - https://www.facebook.com/homeperfection.by
 
 - https://events.dev.by/rss
+- https://meetups-online.ru/
 
 Possible sources:
 https://afisha.tut.by/places/concert/

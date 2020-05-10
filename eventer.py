@@ -268,6 +268,52 @@ def main():
     # download the chrome driver from https://sites.google.com/a/chromium.org/chromedriver/downloads
     chrome_driver = "/usr/bin/chromedriver"
 
+    print('Parsing https://meetups-online.ru feed')
+    feed = requests.get('https://feeds.tildacdn.com/api/getfeed/?feeduid=771034387759').json()
+    for e in feed['posts']:
+        # stopwords
+        bullshit_bingo = False
+        for word in STOPWORDS:
+            if word in e['title']:
+                bullshit_bingo = "Bingo!"
+                break
+
+        duplicate = False
+        for es in events_summary:
+            if levenshtein(e['title'], es) < (len(e['title']) + len(es))*0.3/2:
+                duplicate = True
+                break
+
+        if bullshit_bingo or duplicate:
+            continue
+        try:
+            location = "online"
+            start_date = dateparser.parse(e['date'])
+            finish_date = start_date + datetime.timedelta(hours=3)
+
+            event = {
+                'summary': e['title'],
+                'location': "online",
+                'description': e['directlink'] + "\n\n" + e['descr'],
+                'start': {
+                    'dateTime': start_date.isoformat(),
+                    'timeZone': 'GMT',
+                },
+                'end': {
+                    'dateTime': finish_date.isoformat(),
+                    'timeZone': 'GMT',
+                }
+            }
+            event = service.events().insert(calendarId=calendarId, body=event).execute()
+            print('Event created: {}'.format(event.get('htmlLink')))
+
+            events_summary.append(e['title'])
+        except Exception as er:
+            print("Can't add '{}' event".format(e['title']))
+            print(event)
+            print(er.__doc__)
+            #print(er.message)
+
     print('Parsing events.dev.by rss')
     rss = feedparser.parse('https://events.dev.by/rss')
     for e in rss['entries']:
