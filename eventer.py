@@ -15,6 +15,7 @@ import dateparser
 import feedparser
 import requests
 import json
+import time
 import re
 
 from six.moves.html_parser import HTMLParser
@@ -291,6 +292,9 @@ def main():
             start_date = dateparser.parse(e['date'])
             finish_date = start_date + datetime.timedelta(hours=3)
 
+            if start_date.isoformat() < timeMin:
+                continue
+
             event = {
                 'summary': e['title'],
                 'location': "online",
@@ -349,6 +353,9 @@ def main():
             start_date = datetime.datetime.strptime(dates.split('/')[0], "%Y%m%dT%H%M%S")
             finish_date = datetime.datetime.strptime(dates.split('/')[1], "%Y%m%dT%H%M%S")
 
+            if start_date.isoformat() < timeMin:
+                continue
+
             # remove courses more than 2 weeks from calendar
             if (finish_date - start_date).days > 14:
                 # remove event if it started in the past
@@ -390,6 +397,7 @@ def main():
             #page = requests.get(link, headers=HEADERS)
             driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
             driver.get(link)
+            time.sleep(5)
             # get 14 next events
             ids = re.findall('href="/events/([0-9]*)\?', driver.page_source)
             # Close chrome driver
