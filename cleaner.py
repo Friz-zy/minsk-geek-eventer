@@ -15,6 +15,7 @@ import dateparser
 import feedparser
 import requests
 import json
+import time
 import re
 
 
@@ -94,6 +95,7 @@ def main():
                         continue
                     except Exception as e:
                         print(e)
+                        time.sleep(1)
                         continue
             elif 'date' in event['start'] and 'date' in latest_event['start']:
                 if (event['summary'] == latest_event['summary'] and
@@ -104,6 +106,7 @@ def main():
                         continue
                     except Exception as e:
                         print(e)
+                        time.sleep(1)
                         continue
 
 if __name__ == '__main__':
