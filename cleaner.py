@@ -84,30 +84,24 @@ def main():
         if not page_token:
             break
 
+    remove_list = {}
     for n, event in enumerate(events):
         for latest_event in events[n + 1:]:
-            if 'dateTime' in event['start'] and 'dateTime' in latest_event['start']:
-                if (event['summary'] == latest_event['summary'] and
-                    event['start']['dateTime'] == latest_event['start']['dateTime'] ):
-                    print("Deleting %s %s event" % (event['start']['dateTime'], event['summary']))
-                    try:
-                        service.events().delete(calendarId=calendarId, eventId=event['id']).execute()
-                        continue
-                    except Exception as e:
-                        print(e)
-                        time.sleep(1)
-                        continue
-            elif 'date' in event['start'] and 'date' in latest_event['start']:
-                if (event['summary'] == latest_event['summary'] and
-                    event['start']['date'] == latest_event['start']['date'] ):
-                    print("Deleting %s %s event" % (event['start']['date'], event['summary']))
-                    try:
-                        service.events().delete(calendarId=calendarId, eventId=event['id']).execute()
-                        continue
-                    except Exception as e:
-                        print(e)
-                        time.sleep(1)
-                        continue
+            if (event['summary'] == latest_event['summary'] and
+                event['start'] == latest_event['start']):
+                remove_list[event['id']] = event
+                break
+
+    print(str(len(remove_list)) + " will be deleted from total " + str(len(events)))
+    # sys.exit(0)
+
+    for event in remove_list.values():
+        try:
+            print("Deleting %s %s event" % (event['start'], event['summary']))
+            service.events().delete(calendarId=calendarId, eventId=event['id']).execute()
+            time.sleep(10)
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     main()
